@@ -1,0 +1,1 @@
+/**/#define BUTTON_PIN 6#define BUZZER_PIN 12void setup() {    pinMode(BUTTON_PIN, INPUT);    pinMode(BUZZER_PIN, OUTPUT);    Serial.begin(9600);}void loop() {  int value = digitalRead(BUTTON_PIN);    if(value)    tone(BUZZER_PIN, 1000);    else      noTone(BUZZER_PIN);    Serial.println(value);}
