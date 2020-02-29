@@ -1,1 +1,0 @@
-/**/#define LED_PIN 6void setup() {        pinMode(LED_PIN, OUTPUT);    Serial.begin(9600);}void loop() {  /Serial.println(Serial.read());  digitalWrite(LED_PIN, Serial.read());    }
