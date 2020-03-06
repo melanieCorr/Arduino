@@ -23,10 +23,10 @@ if __name__ == "__main__":
         else:
             ser.write(0)
         
-        value = [int(car) for car in ser.read().split() if car.isdigit()]
-        value = value[0] if value else []
+        # value = [int(car) for car in ser.read().split() if car.isdigit()]
+        # value = value[0] if value else []
 
-        if value == 1:
-            print("BEEP")
-            beep = lambda x: os.system("echo -n '\a';sleep 0.2;" * x)
-            beep(3)
+        # if value == 1:
+        #     print("BEEP")
+        #     beep = lambda x: os.system("echo -n '\a';sleep 0.2;" * x)
+        #     beep(3)

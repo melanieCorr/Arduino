@@ -1,17 +1,18 @@
-
 import re
 import time
 import serial
+import os, sys
+from getkey import getkey
 
 
 # Just for DEBUG
 from pprint import pprint
 
-USB_PORT_NAME   = "/dev/ttyACM0"
-USB_PORT_NUM    = 9600
-MAX_DURATION    = 10  # express the duration that elpased from the last "1" to the actual "1"
-LETTERS         = ["A", "B", "C", "D", "E"]
-LETTERS_CODE    = ["-_", "_---", "_-_-", "_--","-"]
+USB_PORT_NUM        = 9600
+MAX_DURATION        = 10  # express the duration that elpased from the last "1" to the actual "1"
+LETTERS_AND_CODE    = {"A": "-_", "B": "_---", "C": "_-_-", "D": "_--", "E": "-"}
+CODE_VALUE          = {"-": "1", "_": "2"}
+CMD_NB_ARGUMENTS    = 3
 
 
 
@@ -49,6 +50,7 @@ def getSignalsIndices(signalList):
 def decode(signalList):
     timeElapsedList = getElapsedTime(signalList)
     output = ""
+
     for signal, timeElapsed in timeElapsedList:
         output += "-" if timeElapsed < MAX_DURATION else "_"
 
@@ -57,18 +59,49 @@ def decode(signalList):
 
 if __name__ == "__main__":
 
-    ser = serial.Serial(USB_PORT_NAME, USB_PORT_NUM)
-    tStart = time.time()
-    output = []
-    maxTime = 10
-    while((time.time() - tStart) < maxTime):
-        value = [int(car) for car in ser.read().split() if car.isdigit()]
-        value = value[0] if value else -1
-        if value == 0 or value == 1:
-            output.append((value, time.time() - tStart))
-            # print("Value got {}".format(value))
+    if len(sys.argv) < CMD_NB_ARGUMENTS:
+        print("\n\nUsage:\npython3 morse.py [USB_PORT_NAME] [PC | Arduino]")
+        exit(1)
 
+    USBPortName = sys.argv[1]
+    ser         = serial.Serial(USBPortName, USB_PORT_NUM)
+    action      = sys.argv[2]
     
+    if action.lower() == "pc":
+        keyPressed = ""
+        while(keyPressed.lower() != "\x1b"):
+            keyPressed = getkey().upper()
+            print("The key pressed is : " + repr(keyPressed))
+            if keyPressed in LETTERS_AND_CODE.keys():
+                letterCode = LETTERS_AND_CODE[keyPressed]
+                for char in letterCode:
+                    charCode = CODE_VALUE[char]
+                    print('{} ==> {}'.format(
+                        char,
+                        charCode
+                    ))
+                    
+                    ser.write(bytes(charCode, "utf8"))
+                    ser.write(b'3')
             
-    pprint(output)
-    print(decode(output))
+            ser.write(b'4')
+
+
+                    # ser.write(0)
+           
+    else: 
+
+        tStart = time.time()
+        output = []
+        maxTime = 10
+        while((time.time() - tStart) < maxTime):
+            value = [int(car) for car in ser.read().split() if car.isdigit()]
+            value = value[0] if value else -1
+            if value == 0 or value == 1:
+                output.append((value, time.time() - tStart))
+                # print("Value got {}".format(value))
+
+        
+                
+        pprint(output)
+        print(decode(output))
