@@ -19,6 +19,7 @@ if __name__ == "__main__":
     while(not keyboard.is_pressed("esc")):
         
         if keyboard.is_pressed("a"):
+            print("send 1")
             ser.write(1)
         else:
             ser.write(0)
