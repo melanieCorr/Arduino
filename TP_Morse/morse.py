@@ -13,6 +13,7 @@ MAX_DURATION        = 10  # express the duration that elpased from the last "1" 
 LETTERS_AND_CODE    = {"A": "-_", "B": "_---", "C": "_-_-", "D": "_--", "E": "-"}
 CODE_VALUE          = {"-": "1", "_": "2"}
 CMD_NB_ARGUMENTS    = 3
+LETTER_DELIMITER    = len(CODE_VALUE) + 2
 
 
 
@@ -82,9 +83,9 @@ if __name__ == "__main__":
                     ))
                     
                     ser.write(bytes(charCode, "utf8"))
-                    ser.write(b'3')
+                    ser.write(bytes(str(LETTER_DELIMITER - 1), "utf8"))
             
-            ser.write(b'4')
+            ser.write(bytes(str(LETTER_DELIMITER), 'utf8'))
 
 
                     # ser.write(0)
