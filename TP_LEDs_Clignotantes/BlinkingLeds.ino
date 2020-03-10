@@ -1,0 +1,1 @@
+/**/#define LED1_PIN 5#define LED2_PIN 6#define DELAY 500 void setup() {    Serial.begin(9600);  pinMode(LED1_PIN, OUTPUT);  pinMode(LED2_PIN, OUTPUT);}void loop() {    digitalWrite(LED1_PIN, 0);  delay(DELAY);  digitalWrite(LED1_PIN, 1);  digitalWrite(LED2_PIN, 0);  delay(DELAY);  digitalWrite(LED2_PIN, 1);  }
