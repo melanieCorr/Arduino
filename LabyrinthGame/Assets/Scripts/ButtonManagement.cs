@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonManagement : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class ButtonManagement : MonoBehaviour
    public void StartButton() {
        // Lancer le jeu
        Debug.Log("Lancer le jeu.");
-       Application.LoadLevel("GameScene");
+       SceneManager.LoadScene("GameScene");
    }
 
    public void RulesButton() {
