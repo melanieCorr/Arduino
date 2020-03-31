@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     const float minSpeedTranslation = 5.0125f;
     const float translationStep     = 0.5f;
 
-    const float maxSpeedRotation    = 6.5f;
-    const float minSpeedRotation    = 5.0f;
-    const float rotationStep        = 0.2f;
+    const float maxSpeedRotation    = 65f;
+    const float minSpeedRotation    = 50f;
+    const float rotationStep        = 2f;
 
     static float speedX             = minSpeedRotation;
     static float speedY             = minSpeedTranslation;
