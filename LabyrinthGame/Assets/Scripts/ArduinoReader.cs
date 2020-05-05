@@ -15,9 +15,10 @@ public class ArduinoReader : MonoBehaviour
     SerialPort serialPort;
     public int[] coordXYZ = { 0, 0, 0};
     public int[] coefXYZ  = {0, 0, 0}; // represents the direction to take
+    int[] newCoordXYZ = { 0, 0, 0 } ;
+
     public void Start()
-    {
-        
+    {        
         serialPort = new SerialPort("COM3", 9600);
         serialPort.DtrEnable = true;
 
@@ -74,33 +75,54 @@ public class ArduinoReader : MonoBehaviour
 
     public void updateDirectionCoef()
     {
-        int[] newCoordXYZ = this.UpdateCoords();
+
         int i;
         int threshold = 100;//2;
-        for(i = 0; i < (newCoordXYZ.Length - 1); ++i)
-        {
-            int result = coordXYZ[i] - newCoordXYZ[i];
-            if (result > threshold)
-                coefXYZ[i] = 1;
-            else if (result < -threshold)
-                coefXYZ[i] = -1;
-            else if (result >= 0 && result <= threshold) 
-                coefXYZ[i] = 0;
-        }
-        coefXYZ[i] = (newCoordXYZ[i] == 0) ? 0 : 1;
+        bool updateOldCoords = false;
+        int[] coords = this.UpdateCoords();
 
-        print("OldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
+        for (i = 0; i < newCoordXYZ.Length && i < coords.Length; ++i)
+            newCoordXYZ[i] = coords[i];
+        
+        for(i = 0; i < (newCoordXYZ.Length - 1) && i < coordXYZ.Length; ++i)
+        {
+            print("BEFORE\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
+            int delta = coordXYZ[i] - newCoordXYZ[i];
+            if (delta > threshold)
+                coefXYZ[i] = 1;
+            else if (delta < -threshold)
+                coefXYZ[i] = -1;
+            else if (delta >= 0 && delta <= threshold)
+            {
+                coefXYZ[i] = 0;
+            }
+
+            if(coefXYZ[i] != 0)
+                updateOldCoords = true;
+
+        }
+        coefXYZ[i] = (newCoordXYZ[i] == 0) ? 1 : 0;
+
+        print("AFTER\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
         for (i = 0; i < newCoordXYZ.Length && i < coordXYZ.Length; ++i)
         {
-            print(i + ":\t" + coordXYZ[i] + " VS " + newCoordXYZ[i] + "\t==> " + coefXYZ[i]);
+            print(i + ":\t" + coordXYZ[i] + " VS " + newCoordXYZ[i] + "\t==> " + coefXYZ[i] + "\t\tUpdateOldCoords ==> " + updateOldCoords);
             //print(i + ":\t" +  newCoordXYZ[i]);
         }
-        print("------------------------");
+        print("---------------------------------------------------");
 
-        /*for (i = 0; i < coordXYZ.Length; ++i)
+       /*for (i = 0; updateOldCoords && i < coordXYZ.Length; ++i)
         {
-            coordXYZ[i] = newCoordXYZ[i];
+           //print("UPDATE OLD COORDS");
+           coordXYZ[i] = newCoordXYZ[i];
         }
 */
     }
+
+
+   /* public void UpdateOldCoords()
+    {
+        print("UPDATE OLD COORDS");
+        
+    }*/
 }

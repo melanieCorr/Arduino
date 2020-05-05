@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Threading;
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -10,17 +12,20 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public ArduinoReader arduinoReader;
 
-    const float maxSpeedTranslation = 8.5125f;//85.125f;
+    const float maxSpeedTranslation = 28.5125f;//85.125f;
     const float minSpeedTranslation = 5.0125f;
-    const float translationStep     = 0.5f;
+    const float translationStep     = 0.05f;
+    const float runSpeedTranslation = 20f;
 
     const float maxSpeedRotation    = 65f;
-    const float minSpeedRotation    = 50f;
-    const float rotationStep        = 2f;
+    const float minSpeedRotation    = 10f;
+    const float rotationStep        = 3f;
+    const float runSpeedRotation    = 50f;
 
     static float speedX             = minSpeedRotation;
     static float speedY             = minSpeedTranslation;
 
+    const float coefXY              = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,34 +40,41 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //print("CALL the move function\n");
-        this.UpdatePosition();
         arduinoReader.Update(); 
+        this.UpdatePosition();
+        
     }
 
     void UpdatePosition()
     {
+        /*float coefX = Input.GetAxis("Horizontal");
+        float coefY = Input.GetAxis("Vertical");
 
-        /*        float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-                float rotation = Input.GetAxis("Horizontal") * speedRotation * Time.deltaTime;
-        */
+        float translation = coefY * speedY * Time.deltaTime;
+        float rotation = coefX * speedX * Time.deltaTime;
+        this.UpdateSpeed(coefX, coefY);*/
+
+
         int[] dataXYZ = arduinoReader.coefXYZ;
-
         this.UpdateSpeed(dataXYZ[1], dataXYZ[0]);
 
-        float translation   = -dataXYZ[1] * speedY * Time.deltaTime;
-        float rotation      = dataXYZ[0] * speedX * Time.deltaTime;
-        
+        float translation = -dataXYZ[1] * speedY * Time.deltaTime;
+        float rotation = dataXYZ[0] * speedX * Time.deltaTime;
+
+
+        print("coefX: " + (-dataXYZ[1]) + "\tcoefY: " + dataXYZ[0]);
+        print("Translation: " + translation + "\tspeedY: " + speedY);
+        print("Rotation: " + rotation + "\tspeedX: " + speedX);
+
         this.AnimatorManager(translation, rotation);
         
         Quaternion turn = Quaternion.Euler(0f, rotation, 0f);
         rb.MovePosition(rb.position + this.transform.forward * translation);
         rb.MoveRotation(rb.rotation * turn);
 
-        print("Translation: " + translation + "\tspeedY: " + speedY);
-        print("Rotation: " + rotation + "\tspeedX: " + speedX);
     }
 
-    public void UpdateSpeed(int coefX, int coefY)
+    public void UpdateSpeed(float coefX, float coefY)
     {
         if (coefX == 0)
             speedX = minSpeedRotation;
@@ -78,9 +90,10 @@ public class PlayerController : MonoBehaviour
 
     public void AnimatorManager(float translation, float rotation)
     {
-        if(translation > 0 || rotation > 0)
+        if(translation != 0 || rotation != 0)
         {
-            if(speedX >= (minSpeedTranslation + translationStep * 3f) || speedY >= (minSpeedRotation + rotationStep * 3f))
+            if(speedX >= (minSpeedRotation + rotationStep * coefXY) || speedY >= (minSpeedTranslation + translationStep * coefXY))
+            //if (speedX >= runSpeedTranslation || speedY >= runSpeedRotation)
             {
                 animator.SetBool("isRunning", true);
                 animator.SetBool("isWalking", false);
@@ -105,5 +118,13 @@ public class PlayerController : MonoBehaviour
         }
 
         print("********************\nidle: " + animator.GetBool("isIdling") + "\nwalk : " + animator.GetBool("isWalking") + "\nrun : " + animator.GetBool("isRunning") + "\n********************\n");
+    }
+
+    public void ActionManager(int buttonState)
+    {
+        if (buttonState == 1)
+        {
+           
+        }
     }
 }
