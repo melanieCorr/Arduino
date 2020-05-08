@@ -86,7 +86,7 @@ public class ArduinoReader : MonoBehaviour
         
         for(i = 0; i < (newCoordXYZ.Length - 1) && i < coordXYZ.Length; ++i)
         {
-            print("BEFORE\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
+            //print("BEFORE\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
             int delta = coordXYZ[i] - newCoordXYZ[i];
             if (delta > threshold)
                 coefXYZ[i] = 1;
@@ -103,10 +103,10 @@ public class ArduinoReader : MonoBehaviour
         }
         coefXYZ[i] = (newCoordXYZ[i] == 0) ? 1 : 0;
 
-        print("AFTER\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
+        //print("AFTER\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
         for (i = 0; i < newCoordXYZ.Length && i < coordXYZ.Length; ++i)
         {
-            print(i + ":\t" + coordXYZ[i] + " VS " + newCoordXYZ[i] + "\t==> " + coefXYZ[i] + "\t\tUpdateOldCoords ==> " + updateOldCoords);
+            //print(i + ":\t" + coordXYZ[i] + " VS " + newCoordXYZ[i] + "\t==> " + coefXYZ[i] + "\t\tUpdateOldCoords ==> " + updateOldCoords);
             //print(i + ":\t" +  newCoordXYZ[i]);
         }
         print("---------------------------------------------------");

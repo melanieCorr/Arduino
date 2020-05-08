@@ -2302,7 +2302,7 @@ GameObject:
   - component: {fileID: 78211163}
   m_Layer: 0
   m_Name: Keys
-  m_TagString: Untagged
+  m_TagString: Keys
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2708,7 +2708,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.35211003
+      value: 24.64
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
@@ -2718,7 +2718,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.329919
+      value: 88.57
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
@@ -2728,7 +2728,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.73562753
+      value: 0.99894965
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
@@ -2738,7 +2738,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.67738634
+      value: -0.045822904
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
@@ -2753,7 +2753,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 94.72101
+      value: 185.25299
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0579e44302586e848a0536262d8c07c4,
         type: 3}
@@ -2854,6 +2854,8 @@ MonoBehaviour:
   rb: {fileID: 91404628}
   animator: {fileID: 91404633}
   arduinoReader: {fileID: 0}
+  keys: []
+  doors: []
 --- !u!95 &91404633 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 0579e44302586e848a0536262d8c07c4,
@@ -15268,6 +15270,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakeDoor
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 78ba4d8580119864fbf42a43aa816d73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15328,6 +15335,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 36a8c43a3c9ee84419a2c903dbd60bf7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ba4d8580119864fbf42a43aa816d73, type: 3}
 --- !u!4 &489894042 stripped
@@ -15336,6 +15348,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 489894041}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &494955353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 9f942574bb95b484eb3ada0c521e970b,
+    type: 3}
+  m_PrefabInstance: {fileID: 888801355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &494955354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494955353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4e957f33d44fa45ab485c3ac51cfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &496764212
 GameObject:
   m_ObjectHideFlags: 0
@@ -26031,6 +26061,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyEndDoor
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9f942574bb95b484eb3ada0c521e970b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keys
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9f942574bb95b484eb3ada0c521e970b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26101,6 +26136,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 9f942574bb95b484eb3ada0c521e970b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa6ef5e38219d8b4eb203f3afc47f261, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f942574bb95b484eb3ada0c521e970b, type: 3}
 --- !u!4 &809133601 stripped
@@ -28658,6 +28698,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyFakeDoor2
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9f942574bb95b484eb3ada0c521e970b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keys
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9f942574bb95b484eb3ada0c521e970b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28728,6 +28773,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 9f942574bb95b484eb3ada0c521e970b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa6ef5e38219d8b4eb203f3afc47f261, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f942574bb95b484eb3ada0c521e970b, type: 3}
 --- !u!4 &888801356 stripped
@@ -29553,6 +29603,24 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &923773934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 9f942574bb95b484eb3ada0c521e970b,
+    type: 3}
+  m_PrefabInstance: {fileID: 809133600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &923773935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923773934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4e957f33d44fa45ab485c3ac51cfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &927151413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36361,6 +36429,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartDoor
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 78ba4d8580119864fbf42a43aa816d73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36426,6 +36499,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 36a8c43a3c9ee84419a2c903dbd60bf7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ba4d8580119864fbf42a43aa816d73, type: 3}
 --- !u!4 &1120757814 stripped
@@ -39155,6 +39233,24 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1192126181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 9f942574bb95b484eb3ada0c521e970b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1539142418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1192126182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192126181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4e957f33d44fa45ab485c3ac51cfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1200815440
 GameObject:
   m_ObjectHideFlags: 0
@@ -43106,7 +43202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310943530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9000015, y: -2.6, z: 13.299999}
+  m_LocalPosition: {x: 2.7, y: -2.6, z: 13.299999}
   m_LocalScale: {x: 100, y: 0.2, z: 100}
   m_Children: []
   m_Father: {fileID: 116971483}
@@ -51011,6 +51107,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyFakeDoor
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9f942574bb95b484eb3ada0c521e970b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keys
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9f942574bb95b484eb3ada0c521e970b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9f942574bb95b484eb3ada0c521e970b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51081,6 +51187,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 9f942574bb95b484eb3ada0c521e970b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fa6ef5e38219d8b4eb203f3afc47f261, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f942574bb95b484eb3ada0c521e970b, type: 3}
 --- !u!4 &1539142419 stripped
@@ -53635,6 +53746,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakeDoor2
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 78ba4d8580119864fbf42a43aa816d73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53690,6 +53806,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 36a8c43a3c9ee84419a2c903dbd60bf7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ba4d8580119864fbf42a43aa816d73, type: 3}
 --- !u!4 &1632745383 stripped
@@ -62024,6 +62145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndDoor
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 78ba4d8580119864fbf42a43aa816d73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -62079,6 +62205,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 78ba4d8580119864fbf42a43aa816d73,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 36a8c43a3c9ee84419a2c903dbd60bf7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ba4d8580119864fbf42a43aa816d73, type: 3}
 --- !u!4 &1882128987 stripped
