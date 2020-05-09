@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         doors = GameObject.FindGameObjectsWithTag("Doors");
         
         playerKeys = new ArrayList();
+        playerKeys.Add("KeyEndDoor");
         arduinoReader.Start();
         animator.SetBool("isIdling", true); animator.SetBool("isWalking", false);
         animator.SetBool("isRunning", false);
@@ -122,7 +123,9 @@ public class PlayerController : MonoBehaviour
         if (doorName.Equals("EndDoor"))
         {
             print("Congratulations\n You have escaped this maze\n\n");
-            SceneManager.LoadScene("EndingGame", LoadSceneMode.Additive);
+
+            //SceneManager.LoadScene("EndingGame", LoadSceneMode.Additive);
+            SceneManager.LoadScene("MenuScene", LoadSceneMode.Additive);
         }
     }
 
@@ -146,20 +149,22 @@ public class PlayerController : MonoBehaviour
 
     void UpdatePosition()
     {
-        /*float coefX = Input.GetAxis("Horizontal");
+        float coefX = Input.GetAxis("Horizontal");
         float coefY = Input.GetAxis("Vertical");
 
         float translation = coefY * speedY * Time.deltaTime;
         float rotation = coefX * speedX * Time.deltaTime;
-        this.UpdateSpeed(coefX, coefY);*/
+        this.UpdateSpeed(coefX, coefY);
+        if (Input.GetKeyDown(KeyCode.Space) == true)
+            ActionManager(1);
 
 
-        int[] dataXYZ = arduinoReader.coefXYZ;
+        /*int[] dataXYZ = arduinoReader.coefXYZ;
         UpdateSpeed(dataXYZ[1], dataXYZ[0]);
+        
         ActionManager(dataXYZ[2]);
-
         float translation = -dataXYZ[1] * speedY * Time.deltaTime;
-        float rotation = dataXYZ[0] * speedX * Time.deltaTime;
+        float rotation = dataXYZ[0] * speedX * Time.deltaTime;*/
 
 
         /*print("coefX: " + (-dataXYZ[1]) + "\tcoefY: " + dataXYZ[0]);

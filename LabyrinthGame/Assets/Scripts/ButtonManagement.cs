@@ -20,6 +20,7 @@ public class ButtonManagement : MonoBehaviour
    public void RulesButton() {
        // Règles du jeu
        Debug.Log("Règles du jeu.");
+       //SceneManager.LoadScene("GameRule");
        
    }
 }
