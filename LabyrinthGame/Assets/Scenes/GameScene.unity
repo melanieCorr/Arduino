@@ -1686,7 +1686,7 @@ RectTransform:
   m_GameObject: {fileID: 63052954}
   m_LocalRotation: {x: -0, y: -0.99999225, z: 0, w: 0.003951515}
   m_LocalPosition: {x: 0, y: 0, z: -1.9644394}
-  m_LocalScale: {x: 0.96, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1700800716}
   m_RootOrder: 0
@@ -1709,7 +1709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0292809, g: 0.8867924, b: 0.17678365, a: 1}
+  m_Color: {r: 0.034665354, g: 0.38679248, b: 0.095765054, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1745,7 +1745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBar: {fileID: 63052954}
-  time: 0
+  time: 60
 --- !u!1001 &63697529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29151,7 +29151,7 @@ GameObject:
   - component: {fileID: 915303150}
   - component: {fileID: 915303149}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TimerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
