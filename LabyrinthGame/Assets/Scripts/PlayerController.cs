@@ -42,13 +42,13 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        arduinoReader = new ArduinoReader();
+        //arduinoReader = new ArduinoReader();
         keys = GameObject.FindGameObjectsWithTag("Keys");
         doors = GameObject.FindGameObjectsWithTag("Doors");
         
         playerKeys = new ArrayList();
         playerKeys.Add("KeyEndDoor");
-        arduinoReader.Start();
+        //arduinoReader.Start();
         animator.SetBool("isIdling", true); animator.SetBool("isWalking", false);
         animator.SetBool("isRunning", false);
     }
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }*/
         //openDoor(10);
         //print("Close To doors: " + CheckCloseToTag("Doors", 10));
-        arduinoReader.Update();
+        //arduinoReader.Update();
         this.UpdatePosition();
 
     }
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             print("Congratulations\n You have escaped this maze\n\n");
 
             //SceneManager.LoadScene("EndingGame", LoadSceneMode.Additive);
-            SceneManager.LoadScene("MenuScene", LoadSceneMode.Additive);
+            SceneManager.LoadScene("GameWonScene");
         }
     }
 

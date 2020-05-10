@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
 
         if(time == 0) {
             Debug.Log("Game Over !");
+
         }  
     }
 }
