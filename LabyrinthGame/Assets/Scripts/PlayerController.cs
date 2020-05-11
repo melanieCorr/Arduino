@@ -42,13 +42,13 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        //arduinoReader = new ArduinoReader();
+        arduinoReader = new ArduinoReader();
         keys = GameObject.FindGameObjectsWithTag("Keys");
         doors = GameObject.FindGameObjectsWithTag("Doors");
         
         playerKeys = new ArrayList();
         playerKeys.Add("KeyEndDoor");
-        //arduinoReader.Start();
+        arduinoReader.Start();
         animator.SetBool("isIdling", true); animator.SetBool("isWalking", false);
         animator.SetBool("isRunning", false);
     }
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }*/
         //openDoor(10);
         //print("Close To doors: " + CheckCloseToTag("Doors", 10));
-        //arduinoReader.Update();
+        arduinoReader.Update();
         this.UpdatePosition();
 
     }
@@ -149,27 +149,27 @@ public class PlayerController : MonoBehaviour
 
     void UpdatePosition()
     {
-        float coefX = Input.GetAxis("Horizontal");
+        /*float coefX = Input.GetAxis("Horizontal");
         float coefY = Input.GetAxis("Vertical");
 
         float translation = coefY * speedY * Time.deltaTime;
         float rotation = coefX * speedX * Time.deltaTime;
         this.UpdateSpeed(coefX, coefY);
         if (Input.GetKeyDown(KeyCode.Space) == true)
-            ActionManager(1);
+            ActionManager(1);*/
 
 
-        /*int[] dataXYZ = arduinoReader.coefXYZ;
+        int[] dataXYZ = arduinoReader.coefXYZ;
         UpdateSpeed(dataXYZ[1], dataXYZ[0]);
-        
+
         ActionManager(dataXYZ[2]);
         float translation = -dataXYZ[1] * speedY * Time.deltaTime;
-        float rotation = dataXYZ[0] * speedX * Time.deltaTime;*/
+        float rotation = dataXYZ[0] * speedX * Time.deltaTime;
 
 
-        /*print("coefX: " + (-dataXYZ[1]) + "\tcoefY: " + dataXYZ[0]);
+        print("coefX: " + (-dataXYZ[1]) + "\tcoefY: " + dataXYZ[0]);
         print("Translation: " + translation + "\tspeedY: " + speedY);
-        print("Rotation: " + rotation + "\tspeedX: " + speedX);*/
+        print("Rotation: " + rotation + "\tspeedX: " + speedX);
 
         AnimatorManager(translation, rotation);
         
