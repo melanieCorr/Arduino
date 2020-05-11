@@ -8,6 +8,7 @@ TagManager:
   - Doors
   - Timer
   - Timer2
+  - Wall
   layers:
   - Default
   - TransparentFX
