@@ -13,7 +13,8 @@ public class ArduinoReader : MonoBehaviour
 {
     // Start is called before the first frame update
     SerialPort serialPort;
-    public int[] coordXYZ = { 0, 0, 0};
+    //public int[] coordXYZ = { 0, 0, 0};
+    public int[] coordXYZ = { 500, 500, 10}; // 500 is the state where the joystick is not moved 
     public int[] coefXYZ  = {0, 0, 0}; // represents the direction to take
     int[] newCoordXYZ = { 0, 0, 0 } ;
 
@@ -30,7 +31,7 @@ public class ArduinoReader : MonoBehaviour
         }
 
         print("Serial port opened\n");
-        coordXYZ = this.UpdateCoords();
+        //coordXYZ = this.UpdateCoords();
     }
 
     // Update is called once per frame
@@ -60,6 +61,12 @@ public class ArduinoReader : MonoBehaviour
             print(i + "==> " + test2[i]);
         print("------------------------");
     }
+
+    public void PrintOutput()
+    {
+        print("output: " + serialPort.ReadLine());
+    }
+
 
     public int[] UpdateCoords()
     {
@@ -97,32 +104,32 @@ public class ArduinoReader : MonoBehaviour
                 coefXYZ[i] = 0;
             }
 
-            if(coefXYZ[i] != 0)
-                updateOldCoords = true;
+           /* if(coefXYZ[i] != 0)
+                updateOldCoords = true;*/
 
         }
         coefXYZ[i] = (newCoordXYZ[i] == 0) ? 1 : 0;
 
-        //print("AFTER\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
-        for (i = 0; i < newCoordXYZ.Length && i < coordXYZ.Length; ++i)
+        print("AFTER\tOldLen: " + coordXYZ.Length + "\tNewLen: " + newCoordXYZ.Length);
+        for (i = 0; i < newCoordXYZ.Length /*&& i < coordXYZ.Length*/; ++i)
         {
-            //print(i + ":\t" + coordXYZ[i] + " VS " + newCoordXYZ[i] + "\t==> " + coefXYZ[i] + "\t\tUpdateOldCoords ==> " + updateOldCoords);
-            //print(i + ":\t" +  newCoordXYZ[i]);
+            print(i + ":\t" + coordXYZ[i] + " VS " + newCoordXYZ[i] + "\t==> " + coefXYZ[i]);
+            
         }
-        print("---------------------------------------------------");
+        print("---------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-       /*for (i = 0; updateOldCoords && i < coordXYZ.Length; ++i)
+       /* for (i = 0; updateOldCoords && i < coordXYZ.Length; ++i)
         {
-           //print("UPDATE OLD COORDS");
-           coordXYZ[i] = newCoordXYZ[i];
-        }
-*/
+            //print("UPDATE OLD COORDS");
+            coordXYZ[i] = newCoordXYZ[i];
+        }*/
+
     }
 
 
-   /* public void UpdateOldCoords()
-    {
-        print("UPDATE OLD COORDS");
-        
-    }*/
+    /* public void UpdateOldCoords()
+     {
+         print("UPDATE OLD COORDS");
+
+     }*/
 }

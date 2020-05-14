@@ -33,22 +33,26 @@ public class PlayerController : MonoBehaviour
 
     const float coefXY              = 20f;
 
-    const float objectMinDistance = 10f;
+    const float objectMinDistance = 2f;
 
-    ArrayList playerKeys;
+    public ArrayList playerKeys;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        arduinoReader = new ArduinoReader();
+        
+        GameObject gameObject = new GameObject("ArduinoReader");
+        arduinoReader = gameObject.AddComponent<ArduinoReader>();
+        
         keys = GameObject.FindGameObjectsWithTag("Keys");
         doors = GameObject.FindGameObjectsWithTag("Doors");
         
         playerKeys = new ArrayList();
-        playerKeys.Add("KeyEndDoor");
-        arduinoReader.Start();
+        //playerKeys.Add("KeyEndDoor");
+        //arduinoReader.Start();
+
         animator.SetBool("isIdling", true); animator.SetBool("isWalking", false);
         animator.SetBool("isRunning", false);
     }
@@ -68,6 +72,7 @@ public class PlayerController : MonoBehaviour
         arduinoReader.Update();
         this.UpdatePosition();
 
+        DebugMethod();
     }
 
     void OpenDoor()
@@ -104,13 +109,23 @@ public class PlayerController : MonoBehaviour
         return (door == "StartDoor") || KeyExists(door);
     }
 
+    void DebugMethod()
+    {
+        foreach (string key in playerKeys)
+        {
+            print("key: " + key);
+        }
+
+    }
+
     void PickUpKey()
     {
         foreach (GameObject key in keys)
         {
             if (Vector3.Distance(transform.position, key.transform.position) <= objectMinDistance)
             {
-                print("\n\n\nPick up key " + key.name + "\n\n\n");
+                print("\n\n\nPick up key ");
+                print(key.name);
 
                 playerKeys.Add(key.name);
                 key.SetActive(false);
@@ -149,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdatePosition()
     {
-        /*float coefX = Input.GetAxis("Horizontal");
+       /* float coefX = Input.GetAxis("Horizontal");
         float coefY = Input.GetAxis("Vertical");
 
         float translation = coefY * speedY * Time.deltaTime;
